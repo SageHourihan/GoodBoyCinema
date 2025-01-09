@@ -1,6 +1,9 @@
 <?php
 include_once '/var/www/html/GoodBoyCinema/config/db.php';
+require_once '../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable('/var/www/html/GoodBoyCinema/config');
+$dotenv->load();
 function getMovies(){
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM movies");
@@ -10,6 +13,7 @@ function getMovies(){
 }
 
 function getMovieID($movie){
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -22,7 +26,7 @@ function getMovieID($movie){
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'GET',
     CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjczZGVjOTNhMWZiMzI3ZWM1ZmE1ZDZlMGUwYjdkZSIsIm5iZiI6MTY1MzM1MTY5My45NTI5OTk4LCJzdWIiOiI2MjhjMjUwZDZjODQ5MjcxODdhZGIzYTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CaRtDmxuNNYnCRqmpk0D0daxRmP0sCTxod5dWSgUKDw'
+        'Authorization: Bearer ' . $_ENV['TOKEN']
     ),
     ));
 
@@ -48,8 +52,7 @@ function getMoviePoster($id){
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
-        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjczZGVjOTNhMWZiMzI3ZWM1ZmE1ZDZlMGUwYjdkZSIsIm5iZiI6MTY1MzM1MTY5My45NTI5OTk4LCJzdWIiOiI2MjhjMjUwZDZjODQ5MjcxODdhZGIzYTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CaRtDmxuNNYnCRqmpk0D0daxRmP0sCTxod5dWSgUKDw",
-        "accept: application/json"
+        "Authorization: Bearer " . $_ENV['TOKEN']
     ],
     ]);
 
