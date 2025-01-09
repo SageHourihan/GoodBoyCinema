@@ -1,5 +1,11 @@
-<?php
-error_log('test');
+<?php 
+include_once '../config/db.php';
+include_once '../views/header.php';
 ?>
 
-<title>GoodBoyCinema</title>
+<body>
+    <h2>List of movies</h2>
+
+</body>
+
+<?php include_once '../views/footer.php' ?>
