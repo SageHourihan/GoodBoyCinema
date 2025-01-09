@@ -37,7 +37,6 @@ function getMovieID($movie){
 
 function getMoviePoster($id){
 
-    error_log($id);
     $curl = curl_init();
 
     curl_setopt_array($curl, [

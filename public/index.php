@@ -18,6 +18,6 @@ $movies = getMovies();
             }
         ?>
     </ul>
-</body>
+
 
 <?php include_once '../views/footer.php' ?>
