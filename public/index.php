@@ -2,22 +2,32 @@
 include_once '../src/goodboycinema_helper.php';
 include_once '../views/header.php';
 
-$movies = getMovies();
+$movies = getMovies(); // Fetch the movies dynamically
 ?>
 
-<body>
-    <h2>List of movies</h2>
-    <ul>
+<main>
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="movie-search" 
+            placeholder="Search for a movie..." 
+            onkeyup="filterMovies()"
+        >
+    </div>
+
+    <div class="movies-container" id="movies-container">
         <?php
-            foreach ($movies as $movie) {
-                $id = getMovieID($movie['title']);
+        foreach ($movies as $movie) {
+            $id = getMovieID($movie['title']);
+            $poster = getMoviePoster($id);
 
-                $poster = getMoviePoster($id);
-                // error_log($poster);
-                echo "<li><img src='$poster'></li>";
-            }
+            echo "<div class='movie-card' data-title='{$movie['title']}'>
+                    <img src='$poster' alt='{$movie['title']} Poster'>
+                    <h2>{$movie['title']}</h2>
+                  </div>";
+        }
         ?>
-    </ul>
+    </div>
+</main>
 
-
-<?php include_once '../views/footer.php' ?>
+<?php include_once '../views/footer.php'; ?>
