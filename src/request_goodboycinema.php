@@ -28,7 +28,7 @@ function getMovieDetails($id){
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
-        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmY0N2Y3NmFjM2U0NjFkMGJkZDNkNmQwZTRhYmJjMSIsIm5iZiI6MTY1MzM1MTY5My45NTI5OTk4LCJzdWIiOiI2MjhjMjUwZDZjODQ5MjcxODdhZGIzYTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ykHUrFI7vdvSsy1qjseLXZgLRy2Rn4HRxS2yTf2gVLs",
+        "Authorization: Bearer " . $_ENV['TOKEN'],
         "accept: application/json"
     ],
     ]);
