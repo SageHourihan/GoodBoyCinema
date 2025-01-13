@@ -99,7 +99,6 @@ function getDogID($title){
     $response = json_decode($response,true);
 
     return $response['items'][0]['id'];
-
 }
 
 function dogStatus($id){
@@ -133,5 +132,4 @@ function dogStatus($id){
                 return 'The dog lives.';
         }
       }
-      
 }
