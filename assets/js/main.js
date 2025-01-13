@@ -19,13 +19,10 @@ $(document).ready(() => {
     $('.movie-card').on('click', function(){
         // alert($(this).data("id"));
         const id = $(this).data("id");
+        const poster = $(this).data("img")
 
         const url = `../public/details.php?id=${id}`;
 
         window.location.href = url;
-
-        // $.post("../src/request_goodboycinema.php", {id:id, function:"getMovieDetails"}, function(response){
-        //     console.log(response);
-        // }); 
     })
 });

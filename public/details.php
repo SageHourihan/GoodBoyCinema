@@ -27,12 +27,16 @@ curl_close($curl);
 
 $response = json_decode($response, true);
 
+
 ?>
 
 <main>
 
     <div class="details-container">
-        
+        <div class="movie-card">
+            
+        </div>
+
     </div>
 
 </main>
