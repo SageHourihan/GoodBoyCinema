@@ -22,7 +22,8 @@ $movies = getMovies(); // Fetch the movies dynamically
             $poster = getMoviePoster($id);
             $dogTag = getDogId($movie['title']);
             $dogStatus = dogStatus($dogTag);
-            echo "<div class='movie-card' data-title='{$movie['title']}'>
+            echo "<div class='movie-card' data-title='{$movie['title']}'
+            data-id='{$id}'>
                     <img src='$poster' alt='{$movie['title']} Poster'>
                     <h2>{$movie['title']}</h2>
                     <span>{$dogStatus}</span>
