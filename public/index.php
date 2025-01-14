@@ -20,10 +20,14 @@ $movies = getMovies(); // Fetch the movies dynamically
         foreach ($movies as $movie) {
             $id = getMovieID($movie['title']);
             $poster = getMoviePoster($id);
-
-            echo "<div class='movie-card' data-title='{$movie['title']}'>
+            $dogTag = getDogId($movie['title']);
+            $dogStatus = dogStatus($dogTag);
+            echo "<div class='movie-card' data-title='{$movie['title']}'
+            data-id='{$id}'
+            data-img='{$poster}'>
                     <img src='$poster' alt='{$movie['title']} Poster'>
                     <h2>{$movie['title']}</h2>
+                    <span>{$dogStatus}</span>
                   </div>";
         }
         ?>

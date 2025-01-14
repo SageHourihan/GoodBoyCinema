@@ -1,18 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("movie-search");
-    const moviesContainer = document.getElementById("movies-container");
+$(document).ready(() => {
+    const searchInput = $("#movie-search");
+    const moviesContainer = $("#movies-container");
 
-    searchInput.addEventListener("keyup", () => {
-        const searchValue = searchInput.value.toLowerCase();
-        const movies = moviesContainer.getElementsByClassName("movie-card");
+    searchInput.on("keyup", () => {
+        const searchValue = searchInput.val().toLowerCase();
+        const movies = moviesContainer.find(".movie-card");
 
-        Array.from(movies).forEach(movie => {
-            const title = movie.getAttribute("data-title").toLowerCase();
+        movies.each(function () {
+            const title = $(this).data("title").toLowerCase();
             if (title.includes(searchValue)) {
-                movie.style.display = "block"; // Show matching movie
+                $(this).show(); // Show matching movie
             } else {
-                movie.style.display = "none"; // Hide non-matching movie
+                $(this).hide(); // Hide non-matching movie
             }
         });
     });
+
+    $('.movie-card').on('click', function(){
+        // alert($(this).data("id"));
+        const id = $(this).data("id");
+        const poster = $(this).data("img")
+
+        const url = `../public/details.php?id=${id}`;
+
+        window.location.href = url;
+    })
 });
