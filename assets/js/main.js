@@ -16,6 +16,16 @@ $(document).ready(() => {
         });
     });
 
+    // const movies = [];
+    // $('.movie-card').each(function(){
+    //     const id = $(this).data('id');
+    //     const poster = $(this).data('poster');
+
+    //     movies.push({ id, poster });
+    // });
+
+    // localStorage.setItem('movies', JSON.stringify(movies));
+
     $('.movie-card').on('click', function(){
         // alert($(this).data("id"));
         const id = $(this).data("id");
