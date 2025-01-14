@@ -36,6 +36,16 @@ function getMovieID($movie){
     
     $searchData = json_decode($response, true);
 
+    global $conn;
+    try{
+        $stmt = $conn->prepare("UPDATE movies SET tmdb_id=:tmdb_id WHERE title = :title");
+        $stmt->bindParam(":tmdb_id", $searchData['results'][0]['id']);
+        $stmt->bindParam(":title", $movie);
+        $stmt->execute();
+    }catch(PDOException $e){
+        error_log($e->getMessage());
+    }
+
     return $searchData['results'][0]['id'];
 }
 
@@ -67,8 +77,18 @@ function getMoviePoster($id){
 
     $image = "https://image.tmdb.org/t/p/w200$imagePath";
 
+    global $conn;
+    try{
+        $stmt = $conn->prepare("UPDATE movies SET poster_url = :poster_url WHERE tmdb_id = :tmdb_id");
+        $stmt->bindValue(":poster_url", $image);
+        $stmt->bindValue(":tmdb_id", $id);
+        $stmt->execute();
+    }catch(PDOException $e){
+        error_log($e->getMessage());
+    }
+
     if ($err) {
-    echo "cURL Error #:" . $err;
+    error_log ("cURL Error #:" . $err);
     } else {
     return $image;
     }

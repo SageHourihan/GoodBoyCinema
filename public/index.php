@@ -18,8 +18,10 @@ $movies = getMovies(); // Fetch the movies dynamically
     <div class="movies-container" id="movies-container">
         <?php
         foreach ($movies as $movie) {
-            $id = getMovieID($movie['title']);
-            $poster = getMoviePoster($id);
+            $id = !empty($movie['tmdb_id']) ? $movie['tmdb_id'] : getMovieID($movie['title']);
+
+            $poster = !empty($movie['poster_url']) ? $movie['poster_url'] : getMoviePoster($id);
+
             $dogTag = getDogId($movie['title']);
             $dogStatus = dogStatus($dogTag);
             echo "<div class='movie-card' data-title='{$movie['title']}'
